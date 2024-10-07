@@ -2,6 +2,7 @@ package net.javaguides.springboot.controller;
 
 import net.javaguides.springboot.bean.Student;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class StudentController {
         return student;
     }
 
+    //Rest API returns LIST
     @GetMapping("students")
     public List<Student> getStudents(){
         List<Student> students = new ArrayList<>();
@@ -31,5 +33,13 @@ public class StudentController {
         students.add(new Student(25, "Mark", "Wood"));
         students.add(new Student(27, "Taylor", "Swift"));
         return students;
+    }
+
+    //Rest API returns Pathvariable
+    @GetMapping("student/{id}/{first-name}/{last-name}")
+    public Student getPathVariable(@PathVariable("id") int studentId,
+                                   @PathVariable("first-name") String firstName,
+                                   @PathVariable("last-name") String lastName) {
+        return new Student(studentId, firstName, lastName);
     }
 }
