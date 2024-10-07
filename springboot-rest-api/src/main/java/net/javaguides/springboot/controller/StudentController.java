@@ -55,10 +55,21 @@ public class StudentController {
 
 
     //handels POST request
+    // creating new student
     @PostMapping("student/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Student createStudent(@RequestBody Student student){
         System.out.println(student.getAge());
+        System.out.println(student.getFirstName());
+        System.out.println(student.getLastName());
+        return student;
+    }
+
+    //handle PUT request
+    //updating existing resource
+    @PutMapping("student/{id}/update")
+    public Student updateStudent(@RequestBody Student student,
+                                 @PathVariable("id") int studentId){
         System.out.println(student.getFirstName());
         System.out.println(student.getLastName());
         return student;
